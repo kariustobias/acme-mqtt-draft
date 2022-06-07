@@ -75,9 +75,9 @@ MQTT: Message Queuing Telemetry Transport
 
 ACME: Automatic Certificate Management Environment
 
-ACME Client:
+ACME Client: The Client of the ACME Protocol
 
-ACME Server:
+ACME Server: The Server of the ACME Protocol
 
 
 # Specification
@@ -134,21 +134,15 @@ As already discussed in the bachelors thesis of Richard Reik, an EK-Challenge wo
 
 # Security Considerations
 
-## Session Hijacking
-
-When Certificates private key of ACME Server gets leaked or private key of ACME Clients account gets leaked
-
 ## Key Reuse
 
-ACME Servers certificate public key is being used for encryption
+The ACME Clients private key is being used for signing purposes. It is also being used for encryption.
 
-ACME Clients public key is being used for autorization purposes. It is also being used for encryption.
-
-## Using TPM cryptography
+## Using TPM cryptography to reduce change of an Account Takeover
 
 It would make sense for the ACME Client to use its "Trusted Platform Module" (TPM) for the key account usage involving encrypting and signing messages. The Client would therefore create an "Attestation Key" (AK).
 
-The TPM is very secure and even in a OS compromise, an attacker would not be able to retrieve the private key. It would therefore make an account much harder.
+The TPM is very secure and even in a OS compromise, an attacker would not be able to retrieve the private key. It would therefore make an account takeover much harder.
 
 ## Denial of Service
 
